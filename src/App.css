@@ -62,3 +62,26 @@
   position: absolute;
   left: 135vh;
 }
+
+.login-title {
+  text-align: center;
+  border-radius: 50%;
+}
+
+.login div {
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+}
+
+.container-login {
+  position: absolute;
+  top: 20%;
+  left: 35%;
+  background-color: white;
+  padding: 3%;
+  border-radius: 10px;
+  width: max-content;
+  height: max-content;
+  display: flex;
+  flex-direction: row;
+}
