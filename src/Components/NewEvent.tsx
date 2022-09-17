@@ -1,15 +1,26 @@
 import { Button, Checkbox, Container, FormControlLabel, Input, InputLabel, MenuItem, Select, TextField} from '@material-ui/core';
 import { Assignment } from '@mui/icons-material';
 import { Autocomplete } from '@mui/material';
+import axios from 'axios';
 
-import React from 'react';
+import React, { useState } from 'react';
+import { Course } from '../Type/type';
 
 const NewEvent = () => {
-    const subject = [
-        {id: 1, name: 'PROG2'},
-        {id: 2, name: 'SYS2'},
-        {id: 3, name: 'EL1'},
-    ]
+    const [courses, setCourses] = useState<Course[]>([]);
+	const getCandidate = async () => {
+    const response = await axios.get("http://localhost:8080")
+		.then(
+			response => {
+				setCourses(response.data)
+			}
+		)
+		.catch(
+			error => {
+				console.error(error);
+			}
+		)
+    }
     return(
         <>
             <Container className='container'>                     
@@ -46,7 +57,7 @@ const NewEvent = () => {
                         <InputLabel>Nom de l'evenement:</InputLabel>
                         <Autocomplete
                             id="courses"
-                            options={subject}
+                            options={courses}
                             renderInput = {
                                 params => (
                                     <TextField
@@ -55,7 +66,7 @@ const NewEvent = () => {
                                     />
                                 )
                             }
-                            getOptionLabel={option => option.name}
+                            getOptionLabel={option => option.ref}
                         />
 
                     </div>    
